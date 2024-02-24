@@ -1,0 +1,26 @@
+.AnchorPane {
+    -fx-background-color: #b2afaf;
+}
+
+.paneMenu {
+    -fx-background-color: #ffffff;
+}
+
+.textoNormal {
+    -fx-font-family: Arial;
+    -fx-font-size: 14;
+    -fx-text-fill: #ffffff;
+}
+
+.textoMaior {
+    -fx-font-family: Arial;
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.caixas {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+}
