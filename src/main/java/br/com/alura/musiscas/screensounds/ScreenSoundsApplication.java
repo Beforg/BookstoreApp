@@ -30,6 +30,7 @@ public class ScreenSoundsApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        loader.setControllerFactory(this.applicationContext::getBean);
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
         primaryStage.setTitle("Screen Music");

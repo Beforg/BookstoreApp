@@ -1,26 +1,105 @@
-.AnchorPane {
-    -fx-background-color: #b2afaf;
-}
-
-.paneMenu {
-    -fx-background-color: #ffffff;
-}
-
-.textoNormal {
-    -fx-font-family: Arial;
-    -fx-font-size: 14;
-    -fx-text-fill: #ffffff;
-}
-
-.textoMaior {
-    -fx-font-family: Arial;
-    -fx-font-size: 16;
+.botao_padrao {
+   -fx-background-color: #6083DB;
+    -fx-background-radius: 11;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #f1f1f1;
+    -fx-pref-width: 140;
+    -fx-transition: background-color 2s ease-in-out;
 }
 
-.caixas {
+.botao_padrao:hover {
+     -fx-background-color: #3f5da3;
+     -fx-background-radius: 10;
+}
+
+.botao_padrao:pressed {
+    -fx-background-color: #e1d5d5;
+    -fx-background-radius: 10;
+}
+
+.pane {
+    -fx-background-color: #6083DB;
+}
+
+.label_padrao {
+    -fx-font-family: "High Tower Text";
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+
+.label_titulo {
+    -fx-font-family: "Myriad Pro Light";
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}
+
+.text-field {
+    -fx-background-color: #e7e7ef;
+    -fx-background-radius: 10;
     -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #6083DB;
+    -fx-font-family: "Adobe Caslon Pro";
+    -fx-font-size: 14px;
+}
+
+.check-box {
+    -fx-font-family: "Myriad Pro Light";
+    -fx-font-size: 14px;
+    -fx-font-weight: 100;
+    -fx-text-fill: #000000;
+}
+
+.check-box .box {
+    -fx-background-color: #aab8fc;
     -fx-border-width: 1px;
-    -fx-border-radius: 12px;
+}
+
+.choice-box {
+    -fx-background-color: #e7e7ef;
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #6083DB;
+    -fx-font-family: "Adobe Caslon Pro";
+    -fx-font-size: 14px;
+}
+
+.table-view{
+    -fx-background-color: #e7e7ef;
+    -fx-border-style: solid;
+    -fx-border-radius: 3;
+    -fx-border-color: #6083DB;
+    -fx-font-family: "Adobe Caslon Pro";
+    -fx-font-size: 12px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #6083DB;
+    -fx-background-radius: 3;
+    -fx-border-style: solid;
+    -fx-border-color: #1c0303;
+    -fx-border-radius: 3;
+}
+
+.check-box-livros {
+    -fx-pref-width: 125;
+    -fx-background-color: #e7e7ef;
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #6083DB;
+    -fx-padding: 5;
+    -fx-text-alignment: center;
+}
+
+.check-box-livros .box {
+    -fx-background-color: none;
 }
