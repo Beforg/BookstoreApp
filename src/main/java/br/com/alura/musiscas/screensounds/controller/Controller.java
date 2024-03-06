@@ -120,8 +120,22 @@ public class Controller implements Initializable {
                 Consultas.buscaPorAutor(livroRepository, tf_buscadorAutorLivro.getText(), tabelaObservable);
                 initialize(null,null);
             }
+        } else if (cb_filtro_busca.getValue().equals("Avaliação")) {
+            tabelaObservable.clear();
+            table_busca.getItems().clear();
+            Consultas.buscarPorAvalicao(livroRepository, tabelaObservable, cb_categoriaBusca, tf_buscadorAutorLivro.getText());
+            initialize(null,null);
+        } else if (cb_filtro_busca.getValue().equals("Gênero")) {
+            tabelaObservable.clear();
+            table_busca.getItems().clear();
+            Consultas.buscaPorGenero(livroRepository, cb_categoriaBusca.getValue(), tabelaObservable);
+            initialize(null,null);
+        } else if (cb_filtro_busca.getValue().equals("Lido")) {
+            tabelaObservable.clear();
+            table_busca.getItems().clear();
+            Consultas.buscaPorLidos(livroRepository, tabelaObservable,cb_categoriaBusca);
+            initialize(null,null);
         }
-
 
     }
     public void bt_inicio() {

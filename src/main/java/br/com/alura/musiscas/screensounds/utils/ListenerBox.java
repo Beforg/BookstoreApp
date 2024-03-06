@@ -41,7 +41,7 @@ public class ListenerBox {
             } else {
                 tf_buscaAutorLivro.setText("");
                 tf_buscaAutorLivro.setDisable(true);
-                tf_buscaAutorLivro.setPromptText("Autor / Livro / Avaliação");
+                tf_buscaAutorLivro.setPromptText("Autor/Livro/Avaliação");
                 tf_buscaAutorLivro.textProperty().removeListener(avaliacaoListener);
             } if (newValue.equals("Gênero")) {
 
@@ -60,7 +60,13 @@ public class ListenerBox {
                 choiceBoxCategoria.setVisible(false);
                 tf_buscaAutorLivro.setText("");
 
-            } if (newValue.equals("Avaliação")) {
+            } if (newValue.equals("Lido")) {
+                label_selecionaCategoria.setText("Selecione a opção");
+                label_selecionaCategoria.setVisible(true);
+                choiceBoxCategoria.setVisible(true);
+                choiceBoxCategoria.getItems().clear();
+                choiceBoxCategoria.setItems(FXCollections.observableArrayList("Lidos", "Não lidos"));
+            }  if (newValue.equals("Avaliação")) {
                 label_selecionaCategoria.setVisible(true);
                 label_selecionaCategoria.setText("Selecione a avaliação:");
                 choiceBoxCategoria.setVisible(true);

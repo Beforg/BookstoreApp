@@ -138,9 +138,9 @@
                <children>
                   <Label styleClass="label_padrao" text="Filtro" />
                   <ChoiceBox fx:id="cb_filtro_busca" prefHeight="25.0" prefWidth="123.0" />
-                  <TextField fx:id="tf_buscadorAutorLivro" alignment="CENTER" disable="true" prefHeight="32.0" prefWidth="151.0" promptText="Autor / Livro / Avaliação" />
-                  <Label fx:id="label_selecionaCategoria" prefHeight="23.0" prefWidth="183.0" styleClass="label_padrao" text="Selecione a categoria:" />
-                  <ChoiceBox fx:id="cb_categoriaBusca" prefHeight="32.0" prefWidth="122.0" />
+                  <TextField fx:id="tf_buscadorAutorLivro" alignment="CENTER" disable="true" prefHeight="32.0" prefWidth="151.0" promptText="Autor/Livro/Avaliação" />
+                  <Label fx:id="label_selecionaCategoria" prefHeight="23.0" prefWidth="183.0" styleClass="label_padrao" text="Selecione a categoria:" visible="false" />
+                  <ChoiceBox fx:id="cb_categoriaBusca" prefHeight="32.0" prefWidth="122.0" visible="false" />
                   <Button fx:id="botao_pesquisa" mnemonicParsing="false" onAction="#consultar" prefHeight="32.0" prefWidth="70.0" styleClass="bt-busca" />
                </children>
                <padding>

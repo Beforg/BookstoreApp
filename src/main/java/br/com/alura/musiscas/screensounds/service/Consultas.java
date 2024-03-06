@@ -4,6 +4,7 @@ import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
 import br.com.alura.musiscas.screensounds.model.Livro;
 import br.com.alura.musiscas.screensounds.repository.LivroRepository;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 
 import java.util.List;
 
@@ -16,12 +17,28 @@ public class Consultas {
         List<Livro> resultado = livroRepository.buscaPorAutor(trecho);
         verifica(livros, resultado);
     }
-    public static void buscaPorLidos(LivroRepository livroRepository, ObservableList<ConsultaTabela> livros) {
-        List<Livro> resultado = livroRepository.buscaLidos();
-        verifica(livros, resultado);
+    public static void buscaPorLidos(LivroRepository livroRepository, ObservableList<ConsultaTabela> livros, ChoiceBox<String> tipoLido) {
+        if (tipoLido.getValue().equals("Lidos")) {
+            List<Livro> resultado = livroRepository.buscaLidosTrue();
+            verifica(livros, resultado);
+
+        } else {
+            List<Livro> resultado = livroRepository.buscaLidosFalse();
+            verifica(livros, resultado);
+        }
     }
-    public static void buscarPorAvalicao(LivroRepository livroRepository, ObservableList<ConsultaTabela> livros, String avaliacao) {
-        List<Livro> resultado = livroRepository.buscaPorAvaliacaoMaiorQue(avaliacao);
+    public static void buscarPorAvalicao(LivroRepository livroRepository, ObservableList<ConsultaTabela> livros, ChoiceBox<String> tipoAvaliacao, String avaliacao) {
+        if (tipoAvaliacao.getValue().equals("Menor que")) {
+            List<Livro> resultado = livroRepository.buscaPorAvaliacaoMenorQue(avaliacao);
+            verifica(livros, resultado);
+        } else {
+            List<Livro> resultado = livroRepository.buscaPorAvaliacaoMaiorQue(avaliacao);
+            verifica(livros, resultado);
+        }
+
+    }
+    public static void buscaPorGenero(LivroRepository livroRepository, String genero, ObservableList<ConsultaTabela> livros) {
+        List<Livro> resultado = livroRepository.buscaPorGenero(genero);
         verifica(livros, resultado);
     }
     public static void verifica(ObservableList<ConsultaTabela> livros, List<Livro> resultado) {
@@ -33,4 +50,5 @@ public class Consultas {
             }
         }
     }
+
 }
