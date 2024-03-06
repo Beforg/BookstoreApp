@@ -25,8 +25,8 @@ module ScreenSounds {
     exports br.com.alura.musiscas.screensounds.model;
     opens br.com.alura.musiscas.screensounds.repository to spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
     exports br.com.alura.musiscas.screensounds.repository;
-
-
+    exports br.com.alura.musiscas.screensounds.Table;
+    opens br.com.alura.musiscas.screensounds.Table to jakarta.persistence, org.hibernate.orm.core, spring.beans, spring.boot, spring.context, spring.core;
 
 
 }

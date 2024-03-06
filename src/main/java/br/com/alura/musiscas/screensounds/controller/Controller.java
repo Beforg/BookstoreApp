@@ -1,290 +1,162 @@
 package br.com.alura.musiscas.screensounds.controller;
+import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
 import br.com.alura.musiscas.screensounds.model.Autor;
+import br.com.alura.musiscas.screensounds.model.Categorias;
 import br.com.alura.musiscas.screensounds.model.Livro;
 import br.com.alura.musiscas.screensounds.repository.AutorRepository;
 import br.com.alura.musiscas.screensounds.repository.LivroRepository;
+import br.com.alura.musiscas.screensounds.service.Consultas;
+import br.com.alura.musiscas.screensounds.utils.Filter;
+import br.com.alura.musiscas.screensounds.utils.ListenerBox;
+import br.com.alura.musiscas.screensounds.utils.TableSet;
+import br.com.alura.musiscas.screensounds.utils.TransitionMenu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 @Component
 public class Controller implements Initializable {
     @FXML
     private CheckBox box_lido;
-
     @FXML
     private GridPane grid_addLivro;
-
     @FXML
-    private FlowPane grid_busca;
-
+    private FlowPane grid_busca,flowPane_home;
     @FXML
-    private ImageView img_addHome;
-
+    private ImageView img_busca,img_meusLivros,img_addLivro,img_addAutor;
     @FXML
-    private ImageView img_busca;
-
-    @FXML
-    private ImageView img_buscaHome;
-
-    @FXML
-    private ImageView img_meusLivros;
-
-    @FXML
-    private ImageView img_opMeusLivros;
-
-    @FXML
-    private ImageView img_rankHome;
-    @FXML
-    private ImageView img_addLivro;
-
-    @FXML
-    private Label label_addLivro;
-
-    @FXML
-    private Label label_meusLivros;
-
-    @FXML
-    private Label label_textoHome;
-
-    @FXML
-    private Label label_tituloBusca;
-
-    @FXML
-    private Label label_tituloHome;
+    private Label label_meusLivros, label_addLivro,label_textoHome,label_tituloBusca,label_tituloHome,label_selecionaCategoria,label_addAutor;
     @FXML
     private ChoiceBox<Autor> cb_autorAddLivro;
+    @FXML
+    private TableView<ConsultaTabela> table_busca;
+    @FXML
+    private TextField tf_titulo,tf_buscadorAutorLivro, tf_avaliacao,tf_addAutor;
+    @FXML
+    private VBox vBox_opMeusLivros,vBox_addAutor,vBox_meusLivros;
+    @FXML
+    private ChoiceBox<String> cb_filtro_busca,cb_categoriaBusca,cb_categoriaAddLivros;
+    @FXML
+    private TableColumn<ConsultaTabela, String> nome, autor, genero, avaliacao;
+    @FXML
+    private Button botao_pesquisa;
 
-    @FXML
-    private TableView<?> table_busca;
+    Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/pesquisar.png")));
 
-    @FXML
-    private TextField tf_autor;
-
-    @FXML
-    private TextField tf_avaliacao;
-
-    @FXML
-    private TextField tf_genero;
-
-    @FXML
-    private TextField tf_titulo;
-
-    @FXML
-    private VBox vBox_editMeusLivros;
-
-    @FXML
-    private VBox vBox_meusLivros;
-
-    @FXML
-    private VBox vBox_opMeusLivros;
-    @FXML
-    private Label label_addAutor;
-    @FXML
-    private Label label_novoAutor;
-    @FXML
-    private TextField tf_addAutor;
-    @FXML
-    private Button bt_addAutor;
-    @FXML
-    private ImageView img_addAutor;
-
+    /*Consultas ao banco de dados*/
     @Autowired
     private LivroRepository livroRepository;
     @Autowired
     private AutorRepository autorRepository;
-
+    /*--------------------------------------*/
+    ObservableList<Autor> autorObservableList;
+    ObservableList<ConsultaTabela> tabelaObservable = FXCollections.observableArrayList();
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
-        List<Autor> autores = autorRepository.findAll();
-        ObservableList<Autor> autorObservableList = FXCollections.observableArrayList(autores);
-        cb_autorAddLivro.setItems(autorObservableList);
+        if (cb_filtro_busca.getItems().isEmpty()) {
+            Filter.filtrosBusca(cb_filtro_busca);
+        }
+            List<Autor> autores = autorRepository.findAll();
+            autorObservableList = FXCollections.observableArrayList(autores);
+            cb_autorAddLivro.setItems(autorObservableList);
+
+            for (Categorias s : Categorias.values()) {
+                cb_categoriaAddLivros.getItems().add(s.getDescricao());
+            }
+
+
+
+        ListenerBox.listenerBusca(cb_filtro_busca, tf_buscadorAutorLivro, label_selecionaCategoria, cb_categoriaBusca);
+
+        /*----------Tabelas-------*/
+        TableSet.tabelaBusca(nome, autor, genero, avaliacao);
+        table_busca.getItems().addAll(tabelaObservable);
+        /*------------------------*/
+        botao_pesquisa.setGraphic(new ImageView(image));
+
+
     }
     public void persist() {
         Livro livro = new Livro(tf_titulo.getText(),
                 cb_autorAddLivro.getValue(),
                 tf_avaliacao.getText(),
-                tf_genero.getText(),
+                cb_categoriaAddLivros.getValue(),
                 box_lido.isSelected());
 
         livroRepository.save(livro);
     }
+    public void consultar() {
+        if (cb_filtro_busca.getValue().contains("Nome")) {
+            System.out.println("Buscou por nome");
+            tabelaObservable.clear();
+            table_busca.getItems().clear();
+            if (tf_buscadorAutorLivro.getText().isEmpty()) {
+                System.out.println("Busca vazia");
+            } else {
+                Consultas.buscaPorTitulo(livroRepository, tf_buscadorAutorLivro.getText(), tabelaObservable);
+                initialize(null,null);
+            }
+        } else if (cb_filtro_busca.getValue().equals("Autor")) {
+            System.out.println("Buscou por autor");
+            tabelaObservable.clear();
+            table_busca.getItems().clear();
+            if(tf_buscadorAutorLivro.getText().isEmpty()) {
+                System.out.println("Busca vazia");
+            } else {
+                Consultas.buscaPorAutor(livroRepository, tf_buscadorAutorLivro.getText(), tabelaObservable);
+                initialize(null,null);
+            }
+        }
 
-    public void showHome() {
-        label_textoHome.setVisible(true);
-        label_tituloHome.setVisible(true);
-        img_addHome.setVisible(true);
-        img_rankHome.setVisible(true);
-        img_buscaHome.setVisible(true);
-    }
-    public void showAdd(){
-        label_addLivro.setVisible(true);
-        grid_addLivro.setVisible(true);
-        img_addLivro.setVisible(true);
-    }
-    public void showBusca() {
-        label_tituloBusca.setVisible(true);
-        grid_busca.setVisible(true);
-        img_busca.setVisible(true);
-        table_busca.setVisible(true);
-    }
-    public void showMeusLivros() {
-        img_meusLivros.setVisible(true);
-        label_meusLivros.setVisible(true);
-        vBox_meusLivros.setVisible(true);
-        vBox_opMeusLivros.setVisible(true);
-    }
-    public void showNovoAutor() {
-        label_addAutor.setVisible(true);
-        label_novoAutor.setVisible(true);
-        tf_addAutor.setVisible(true);
-        bt_addAutor.setVisible(true);
-        img_addAutor.setVisible(true);
-    }
-    public void hideInicio() {
-        label_textoHome.setVisible(false);
-        label_tituloHome.setVisible(false);
-        img_addHome.setVisible(false);
-        img_rankHome.setVisible(false);
-        img_meusLivros.setVisible(false);
-        img_buscaHome.setVisible(false);
-    }
-    public void hideBusca() {
-        label_tituloBusca.setVisible(false);
-        grid_busca.setVisible(false);
-        table_busca.setVisible(false);
-        img_busca.setVisible(false);
-    }
-    public void hideAddLivro() {
-        label_addLivro.setVisible(false);
-        grid_addLivro.setVisible(false);
-        img_addLivro.setVisible(false);
-    }
-    public void hideAddAutor() {
-        label_addAutor.setVisible(false);
-        label_novoAutor.setVisible(false);
-        tf_addAutor.setVisible(false);
-        bt_addAutor.setVisible(false);
-        img_addAutor.setVisible(false);
-    }
-    public void hideMeusLivros() {
-        label_meusLivros.setVisible(false);
-        vBox_meusLivros.setVisible(false);
-        vBox_opMeusLivros.setVisible(false);
-        vBox_editMeusLivros.setVisible(false);
-        img_meusLivros.setVisible(false);
+
     }
     public void bt_inicio() {
-        if (label_addLivro.isVisible()) {
-
-            hideAddLivro();
-            showHome();
-        } else if (label_tituloBusca.isVisible()) {
-            hideBusca();
-
-            showHome();
-        } else if (label_meusLivros.isVisible()) {
-            hideMeusLivros();
-
-            showHome();
-        } else {
-            hideAddAutor();
-            showHome();
-        }
-
+        TransitionMenu.verificaHome(label_addLivro, grid_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor, label_textoHome, label_tituloHome, flowPane_home, img_addLivro);
     }
     public void bt_addLivro() {
-        if (label_textoHome.isVisible()) {
-            hideInicio();
-            showAdd();
-        } else if (label_meusLivros.isVisible()) {
-            hideMeusLivros();
-
-            showAdd();
-        } else if (label_tituloBusca.isVisible()) {
-            hideBusca();
-
-            showAdd();
-        } else {
-            hideAddAutor();
-            showAdd();
-        }
+        TransitionMenu.verificaAddLivro(label_textoHome, label_tituloHome, flowPane_home, label_addLivro, grid_addLivro, img_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor);
     }
 
     public void bt_buscaLivro() {
-        if (label_textoHome.isVisible()) {
-            hideInicio();
-
-            showBusca();
-        } else if (label_addLivro.isVisible()) {
-            hideAddLivro();
-
-            showBusca();
-        } else if (label_meusLivros.isVisible()) {
-            hideMeusLivros();
-
-            showBusca();
-        } else {
-            hideAddAutor();
-            showBusca();
-        }
+        TransitionMenu.verificaBuscaLivro(label_textoHome, label_tituloHome, flowPane_home, label_addLivro, grid_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor, img_addLivro);
     }
     public void bt_meusLivros() {
-        if (label_tituloHome.isVisible()) {
-            hideInicio();
-
-            showMeusLivros();
-
-        } else if (label_addLivro.isVisible()) {
-            hideAddLivro();
-
-            showMeusLivros();
-
-        } else if (label_tituloBusca.isVisible()) {
-            hideBusca();
-
-            showMeusLivros();
-
-        } else {
-            hideAddAutor();
-            showMeusLivros();
-        }
+        TransitionMenu.verificaMeusLivros(label_textoHome, label_tituloHome, flowPane_home, label_addLivro, grid_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor, img_addLivro);
 
     }
     public void novoAutor() {
-        if (label_tituloHome.isVisible()) {
-            hideInicio();
-
-            showNovoAutor();
-        } else if (label_addLivro.isVisible()) {
-            hideAddLivro();
-
-
-            showNovoAutor();
-        } else if (label_tituloBusca.isVisible()) {
-            hideBusca();
-
-            showNovoAutor();
-        } else if (label_meusLivros.isVisible()) {
-            hideMeusLivros();
-            showNovoAutor();
-        }
+    TransitionMenu.verificaAddAutor(label_textoHome, label_tituloHome, flowPane_home, label_addLivro, grid_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor, img_addLivro);
     }
     public void addAutor() {
-        Autor autor = new Autor(tf_addAutor.getText());
-        autorRepository.save(autor);
+        String nomeAutor = tf_addAutor.getText();
+        if(nomeAutor.isEmpty()) {
+            System.out.println("Campo vazio");
+        } else {
+            boolean autorExiste = autorObservableList.stream()
+                    .anyMatch(autor -> autor.getNome().equals(nomeAutor));
+
+            if (autorExiste) {
+                System.out.println("Autor já existe na lista");
+            } else {
+                Autor autor = new Autor(nomeAutor);
+                autorRepository.save(autor);
+                autorObservableList.clear();
+                autorObservableList.addAll(autorRepository.findAll());
+            }
+        }
     }
 }

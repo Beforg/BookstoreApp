@@ -33,7 +33,7 @@ public class ScreenSoundsApplication extends Application {
         loader.setControllerFactory(this.applicationContext::getBean);
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Screen Music");
+        primaryStage.setTitle("BookStoreApp");
         primaryStage.show();
     }
     @Override
