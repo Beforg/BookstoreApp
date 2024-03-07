@@ -1,4 +1,4 @@
-package br.com.alura.musiscas.screensounds.Table;
+package br.com.alura.app.bookstore.Table;
 
 public class ConsultaTabela {
     private final String nome;

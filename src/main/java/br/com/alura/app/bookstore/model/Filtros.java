@@ -1,4 +1,4 @@
-package br.com.alura.musiscas.screensounds.model;
+package br.com.alura.app.bookstore.model;
 
 public enum Filtros {
     GENERO("Gênero"),

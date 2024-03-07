@@ -1,12 +1,15 @@
-package br.com.alura.musiscas.screensounds;
+package br.com.alura.app.bookstore;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.util.Objects;
 
 
 @SpringBootApplication
@@ -29,11 +32,13 @@ public class ScreenSoundsApplication extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/book-stack.png")));
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
         loader.setControllerFactory(this.applicationContext::getBean);
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BookStoreApp");
+        primaryStage.getIcons().add(image);
         primaryStage.setResizable(false);
         primaryStage.show();
     }

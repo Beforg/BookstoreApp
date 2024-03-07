@@ -1,4 +1,4 @@
-package br.com.alura.musiscas.screensounds.controller;
+package br.com.alura.app.bookstore.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,11 +36,13 @@ public class InfoScreenController {
 
     public static boolean isOpen = false;
 
+    Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/information.png")));
+
     public InfoScreenController() {
 
     }
 
-    public void showInformationMessage(String message, String title, int tipo) {
+    public void showInformationMessage(String message, String title, int tipo, boolean confirma) {
         if (!isOpen) {
             isOpen = true;
             Stage stage = new Stage();
@@ -62,9 +64,20 @@ public class InfoScreenController {
             } else {
                 controller.information.setVisible(true);
             }
+            controller.bt_esquerda.setVisible(confirma);
+            if (controller.bt_esquerda.isVisible()) {
+                controller.bt_direita.setText("NÃO");
+            }
             stage.setScene(scene);
             stage.setTitle("Atenção");
+            stage.getIcons().add(icon);
+            stage.setOnCloseRequest(event -> isOpen = false);
             stage.show();
         }
+    }
+    public void fechar() {
+        Stage stage = (Stage) bt_direita.getScene().getWindow();
+        stage.close();
+        isOpen = false;
     }
 }

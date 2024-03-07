@@ -1,4 +1,4 @@
-package br.com.alura.musiscas.screensounds;
+package br.com.alura.app.bookstore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

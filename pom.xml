@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.alura.musiscas</groupId>
-    <artifactId>ScreenSounds</artifactId>
+    <artifactId>BookstoreApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Screen-Sounds</name>
     <description>Screen-Sounds</description>

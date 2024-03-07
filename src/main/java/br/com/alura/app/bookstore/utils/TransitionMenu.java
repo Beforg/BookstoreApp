@@ -1,5 +1,5 @@
-package br.com.alura.musiscas.screensounds.utils;
-import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
+package br.com.alura.app.bookstore.utils;
+import br.com.alura.app.bookstore.Table.ConsultaTabela;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.TableView;
@@ -29,11 +29,14 @@ public class TransitionMenu {
         table_busca.setVisible(b);
     }
     /*Visibilidade dos elementos dos Meus Livros*/
-    public static void transitionMeusLivros(ImageView img_meusLivros, Label label_meusLivros, VBox vBox_meusLivros, VBox vBox_opMeusLivros, boolean b) {
+    public static void transitionMeusLivros(ImageView img_meusLivros, Label label_meusLivros, VBox vBox_meusLivros, VBox vBox_opMeusLivros, VBox vBox_editLivro,VBox pesquisa_livro, boolean b){
         img_meusLivros.setVisible(b);
         label_meusLivros.setVisible(b);
         vBox_meusLivros.setVisible(b);
         vBox_opMeusLivros.setVisible(b);
+        vBox_editLivro.setVisible(false);
+        pesquisa_livro.setVisible(false);
+
     }
     /*Visibilidade dos elementos dos Autores*/
     public static void transitionAutores(Label label_addAutor, ImageView img_addAutor, VBox vBox_addAutor, boolean b) {
@@ -58,7 +61,9 @@ public class TransitionMenu {
                                     Label label_textoHome,
                                     Label label_tituloHome,
                                     FlowPane flowPane_home,
-                                    ImageView img_addLivro) {
+                                    ImageView img_addLivro,
+                                    VBox vBox_editLivro,
+                                    VBox pesquisa) {
         if (label_addLivro.isVisible()) {
             TransitionMenu.transitionAddLivros(label_addLivro,grid_addLivro,false,img_addLivro);
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,true);
@@ -68,7 +73,7 @@ public class TransitionMenu {
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,true);
         } else if (label_meusLivros.isVisible()) {
 
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,false);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,false);
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,true);
 
         } else {
@@ -93,12 +98,14 @@ public class TransitionMenu {
                                         VBox vBox_opMeusLivros,
                                         Label label_addAutor,
                                         ImageView img_addAutor,
-                                        VBox vBox_addAutor) {
+                                        VBox vBox_addAutor,
+                                        VBox vBox_editLivro,
+                                        VBox pesquisa) {
         if (label_textoHome.isVisible()) {
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,false);
             TransitionMenu.transitionAddLivros(label_addLivro,grid_addLivro,true,img_addLivro);
         } else if (label_meusLivros.isVisible()) {
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,false);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,false);
             TransitionMenu.transitionAddLivros(label_addLivro,grid_addLivro,true,img_addLivro);
         } else if (label_tituloBusca.isVisible()) {
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,false,table_busca);
@@ -125,7 +132,9 @@ public class TransitionMenu {
                                           Label label_addAutor,
                                           ImageView img_addAutor,
                                           VBox vBox_addAutor,
-                                          ImageView img_addLivro) {
+                                          ImageView img_addLivro,
+                                          VBox vBox_editLivro,
+                                          VBox pesquisa) {
         if (label_textoHome.isVisible()) {
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,false);
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,true,table_busca);
@@ -133,7 +142,7 @@ public class TransitionMenu {
             TransitionMenu.transitionAddLivros(label_addLivro,grid_addLivro,false,img_addLivro);
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,true,table_busca);
         } else if (label_meusLivros.isVisible()) {
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,false);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,false);
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,true,table_busca);
         } else {
             TransitionMenu.transitionAutores(label_addAutor,img_addAutor,vBox_addAutor,false);
@@ -157,19 +166,21 @@ public class TransitionMenu {
                                           Label label_addAutor,
                                           ImageView img_addAutor,
                                           VBox vBox_addAutor,
-                                          ImageView img_addLivro) {
+                                          ImageView img_addLivro,
+                                          VBox vBox_editLivro,
+                                          VBox pesquisa) {
         if (label_tituloHome.isVisible()) {
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,false);
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,true);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,true);
         } else if (label_addLivro.isVisible()) {
             TransitionMenu.transitionAddLivros(label_addLivro,grid_addLivro,false,img_addLivro);
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,true);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,true);
         } else if (label_tituloBusca.isVisible()) {
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,false,table_busca);
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,true);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,true);
         } else {
             TransitionMenu.transitionAutores(label_addAutor,img_addAutor,vBox_addAutor,false);
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,true);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,true);
         }
     }
     /*Verificação da aba aberta para Autores*/
@@ -189,7 +200,9 @@ public class TransitionMenu {
                                         Label label_addAutor,
                                         ImageView img_addAutor,
                                         VBox vBox_addAutor,
-                                        ImageView img_addLivro) {
+                                        ImageView img_addLivro,
+                                        VBox vBox_editLivro,
+                                        VBox pesquisa) {
         if (label_tituloHome.isVisible()) {
             TransitionMenu.transitionHome(label_textoHome,label_tituloHome,flowPane_home,false);
             TransitionMenu.transitionAutores(label_addAutor,img_addAutor,vBox_addAutor,true);
@@ -200,7 +213,7 @@ public class TransitionMenu {
             TransitionMenu.transitionBusca(label_tituloBusca,grid_busca,img_busca,false,table_busca);
             TransitionMenu.transitionAutores(label_addAutor,img_addAutor,vBox_addAutor,true);
         } else if (label_meusLivros.isVisible()) {
-            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,false);
+            TransitionMenu.transitionMeusLivros(img_meusLivros,label_meusLivros,vBox_meusLivros,vBox_opMeusLivros,vBox_editLivro,pesquisa,false);
             TransitionMenu.transitionAutores(label_addAutor,img_addAutor,vBox_addAutor,true);
         }
     }

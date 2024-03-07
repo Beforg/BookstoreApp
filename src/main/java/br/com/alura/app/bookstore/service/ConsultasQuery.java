@@ -1,9 +1,9 @@
-package br.com.alura.musiscas.screensounds.service;
+package br.com.alura.app.bookstore.service;
 
-import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
-import br.com.alura.musiscas.screensounds.Table.RankingTabela;
-import br.com.alura.musiscas.screensounds.model.Livro;
-import br.com.alura.musiscas.screensounds.repository.LivroRepository;
+import br.com.alura.app.bookstore.Table.ConsultaTabela;
+import br.com.alura.app.bookstore.Table.RankingTabela;
+import br.com.alura.app.bookstore.model.Livro;
+import br.com.alura.app.bookstore.repository.LivroRepository;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 

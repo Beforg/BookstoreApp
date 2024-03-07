@@ -1,4 +1,4 @@
-module ScreenSounds {
+module BookstoreApp {
     requires spring.boot.autoconfigure;
     requires spring.boot;
     requires spring.context;
@@ -12,21 +12,21 @@ module ScreenSounds {
     requires spring.tx;
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
+    requires spring.jdbc;
 
 
-
-    opens br.com.alura.musiscas.screensounds to org.hibernate.orm.core, spring.core, spring.beans, spring.context, spring.boot, javafx.fxml, javafx.controls, java.sql, jakarta.persistence;
-    exports br.com.alura.musiscas.screensounds;
-    opens br.com.alura.musiscas.screensounds.controller to javafx.fxml, spring.core;
-    exports br.com.alura.musiscas.screensounds.controller;
-    opens br.com.alura.musiscas.screensounds.service to spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
-    exports br.com.alura.musiscas.screensounds.service;
-    opens br.com.alura.musiscas.screensounds.model to org.hibernate.orm.core, spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
-    exports br.com.alura.musiscas.screensounds.model;
-    opens br.com.alura.musiscas.screensounds.repository to spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
-    exports br.com.alura.musiscas.screensounds.repository;
-    exports br.com.alura.musiscas.screensounds.Table;
-    opens br.com.alura.musiscas.screensounds.Table to jakarta.persistence, org.hibernate.orm.core, spring.beans, spring.boot, spring.context, spring.core;
+    opens br.com.alura.app.bookstore to org.hibernate.orm.core, spring.core, spring.beans, spring.context, spring.boot, javafx.fxml, javafx.controls, java.sql, jakarta.persistence;
+    exports br.com.alura.app.bookstore;
+    opens br.com.alura.app.bookstore.controller to javafx.fxml, spring.core;
+    exports br.com.alura.app.bookstore.controller;
+    opens br.com.alura.app.bookstore.service to spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
+    exports br.com.alura.app.bookstore.service;
+    opens br.com.alura.app.bookstore.model to org.hibernate.orm.core, spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
+    exports br.com.alura.app.bookstore.model;
+    opens br.com.alura.app.bookstore.repository to spring.core, spring.beans, spring.context, spring.boot, jakarta.persistence;
+    exports br.com.alura.app.bookstore.repository;
+    exports br.com.alura.app.bookstore.Table;
+    opens br.com.alura.app.bookstore.Table to jakarta.persistence, org.hibernate.orm.core, spring.beans, spring.boot, spring.context, spring.core;
 
 
 }

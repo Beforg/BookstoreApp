@@ -1,3 +1,7 @@
+.fundo {
+    -fx-background-color: white;
+}
+
 .botao_padrao {
    -fx-background-color: #6083DB;
     -fx-background-radius: 11;
@@ -22,7 +26,8 @@
 }
 
 .pane {
-    -fx-background-color: #6083DB;
+
+    -fx-background-color: linear-gradient(to bottom, #6083DB, rgba(4, 12, 63, 0.64));
 }
 
 .label_padrao {
@@ -103,7 +108,7 @@
     -fx-opacity: 0;
 }
 .check-box-livros {
-    -fx-pref-width: 125;
+    -fx-pref-width: 150;
     -fx-background-color: #e7e7ef;
     -fx-background-radius: 10;
     -fx-border-style: solid;
@@ -127,4 +132,51 @@
 }
 .bt-busca:hover {
     -fx-background-color: #6083DB;
+}
+.text-field-avaliacao {
+    -fx-background-color: #e7e7ef;
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #6083DB;
+    -fx-font-family: "Adobe Caslon Pro";
+    -fx-font-size: 14px;
+    -fx-pref-width: 50;
+}
+
+.botao_padrao-excluir {
+    -fx-background-color: #c70101;
+    -fx-background-radius: 11;
+    -fx-text-fill: #000000;
+    -fx-font-size: 12px;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #f1f1f1;
+    -fx-pref-width: 140;
+    -fx-pref-height: 24;
+    -fx-transition: background-color 2s ease-in-out;
+}
+
+.botao_padrao-excluir:hover {
+    -fx-background-color: #5e1f1f;
+    -fx-background-radius: 10;
+}
+
+.botao_padrao-excluir:pressed {
+    -fx-background-color: #e1d5d5;
+    -fx-background-radius: 10;
+}
+
+.vBox {
+    -fx-border-style: solid;
+    -fx-border-radius: 18;
+    -fx-border-color: #6083DB;
+}
+.menuBar {
+    -fx-background-color: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-transition: background-color 2s ease-in-out;
+
 }

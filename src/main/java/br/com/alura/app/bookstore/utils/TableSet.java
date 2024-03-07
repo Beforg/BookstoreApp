@@ -1,7 +1,7 @@
-package br.com.alura.musiscas.screensounds.utils;
+package br.com.alura.app.bookstore.utils;
 
-import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
-import br.com.alura.musiscas.screensounds.Table.RankingTabela;
+import br.com.alura.app.bookstore.Table.ConsultaTabela;
+import br.com.alura.app.bookstore.Table.RankingTabela;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 

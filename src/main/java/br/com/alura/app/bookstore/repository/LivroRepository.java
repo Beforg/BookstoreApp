@@ -1,8 +1,10 @@
-package br.com.alura.musiscas.screensounds.repository;
+package br.com.alura.app.bookstore.repository;
 
-import br.com.alura.musiscas.screensounds.model.Livro;
+import br.com.alura.app.bookstore.model.Livro;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -24,4 +26,9 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     List<Livro> buscaPorGenero(String genero);
     @Query("SELECT l FROM Livro l ORDER BY l.avaliacao ASC LIMIT 10")
     List<Livro> buscaPorRanking();
+    Livro findByTitulo(String newValue);
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Livro l WHERE l.titulo = :titulo")
+    void deleteByTitulo(String titulo);
 }
