@@ -1,6 +1,7 @@
 package br.com.alura.musiscas.screensounds.utils;
 
 import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
+import br.com.alura.musiscas.screensounds.Table.RankingTabela;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -13,6 +14,13 @@ public class TableSet {
         autor.setCellValueFactory(new PropertyValueFactory<>("autor"));
         genero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         avaliacao.setCellValueFactory(new PropertyValueFactory<>("avaliacao"));
+
+    }
+
+    public static void tabelaRanking(TableColumn<RankingTabela, String> nome_ranking,
+                                     TableColumn<RankingTabela, String> avaliacao_ranking) {
+        nome_ranking.setCellValueFactory(new PropertyValueFactory<>("nome_ranking"));
+        avaliacao_ranking.setCellValueFactory(new PropertyValueFactory<>("avaliacao_ranking"));
 
     }
 }

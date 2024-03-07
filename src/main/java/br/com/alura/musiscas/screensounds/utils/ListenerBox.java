@@ -4,9 +4,11 @@ import br.com.alura.musiscas.screensounds.model.Categorias;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 public class ListenerBox {
     public static void listenerBusca(ChoiceBox<String> choiceBoxFiltro,
@@ -79,6 +81,23 @@ public class ListenerBox {
                 tf_buscaAutorLivro.textProperty().removeListener(avaliacaoListener);
             }
 
+        });
+    }
+    public static void verificaCheckBoxMeusLivros(CheckBox cb_ranking, CheckBox cb_editLivro, VBox box_ranking, VBox box_editLivro) {
+        cb_ranking.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                cb_editLivro.setSelected(false);
+                box_ranking.setVisible(true);
+                box_editLivro.setVisible(true);
+
+            }
+        });
+        cb_editLivro.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                cb_ranking.setSelected(false);
+                box_ranking.setVisible(false);
+                box_editLivro.setVisible(true);
+            }
         });
     }
 }

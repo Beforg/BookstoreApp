@@ -1,0 +1,26 @@
+.label-titulo {
+    -fx-font-size: 20px;
+    -fx-font-family: "Myriad Pro Light";
+}
+.label-texto {
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+}
+
+.button {
+    -fx-font-family: Arial;
+    -fx-background-color: gray;
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #99aee5;
+
+}
+.button:pressed {
+    -fx-background-color: #5783af;
+    -fx-background-radius: 10;
+
+}
+.anchor-pane {
+    -fx-background-color: #d3d3e0;
+}

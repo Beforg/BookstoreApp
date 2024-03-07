@@ -77,8 +77,6 @@
     -fx-border-style: solid;
     -fx-border-radius: 3;
     -fx-border-color: #6083DB;
-    -fx-font-family: "Adobe Caslon Pro";
-    -fx-font-size: 12px;
 }
 
 .table-view .column-header {
@@ -88,7 +86,22 @@
     -fx-border-color: #1c0303;
     -fx-border-radius: 3;
 }
+.table-view.table-cell {
+    -fx-font-family: "High Tower Text";
+    -fx-font-size: 12px;
+    -fx-alignment: center;
+    }
+.table-view .table-row-cell:odd {
+    -fx-background-color: #c1dfff;
+}
 
+.table-view .table-row-cell:even {
+    -fx-background-color: #99aee5;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-opacity: 0;
+}
 .check-box-livros {
     -fx-pref-width: 125;
     -fx-background-color: #e7e7ef;
@@ -102,4 +115,16 @@
 
 .check-box-livros .box {
     -fx-background-color: none;
+}
+
+.bt-busca {
+    -fx-background-color: white;
+    -fx-background-radius: 11;
+    -fx-border-style: solid;
+    -fx-border-radius: 10;
+    -fx-border-color: #f1f1f1;
+    -fx-pref-width: 50;
+}
+.bt-busca:hover {
+    -fx-background-color: #6083DB;
 }

@@ -1,6 +1,7 @@
 package br.com.alura.musiscas.screensounds.service;
 
 import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
+import br.com.alura.musiscas.screensounds.Table.RankingTabela;
 import br.com.alura.musiscas.screensounds.model.Livro;
 import br.com.alura.musiscas.screensounds.repository.LivroRepository;
 import javafx.collections.ObservableList;
@@ -8,7 +9,7 @@ import javafx.scene.control.ChoiceBox;
 
 import java.util.List;
 
-public class Consultas {
+public class ConsultasQuery {
     public static void buscaPorTitulo(LivroRepository livroRepository, String trecho, ObservableList<ConsultaTabela> livros) {
         List<Livro> resultado = livroRepository.buscaPorTitulo(trecho);
         verifica(livros, resultado);
@@ -40,6 +41,12 @@ public class Consultas {
     public static void buscaPorGenero(LivroRepository livroRepository, String genero, ObservableList<ConsultaTabela> livros) {
         List<Livro> resultado = livroRepository.buscaPorGenero(genero);
         verifica(livros, resultado);
+    }
+    public static void buscaPorRanking(LivroRepository livroRepository, ObservableList<RankingTabela> ranking) {
+        List<Livro> resultado = livroRepository.buscaPorRanking();
+        for (Livro livro : resultado) {
+            ranking.add(new RankingTabela(livro.getTitulo(), livro.getAvaliacao()));
+        }
     }
     public static void verifica(ObservableList<ConsultaTabela> livros, List<Livro> resultado) {
         for (Livro livro : resultado) {

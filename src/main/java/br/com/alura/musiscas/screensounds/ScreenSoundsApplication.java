@@ -34,6 +34,7 @@ public class ScreenSoundsApplication extends Application {
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BookStoreApp");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
     @Override

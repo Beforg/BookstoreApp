@@ -1,15 +1,13 @@
 package br.com.alura.musiscas.screensounds.controller;
 import br.com.alura.musiscas.screensounds.Table.ConsultaTabela;
+import br.com.alura.musiscas.screensounds.Table.RankingTabela;
 import br.com.alura.musiscas.screensounds.model.Autor;
 import br.com.alura.musiscas.screensounds.model.Categorias;
-import br.com.alura.musiscas.screensounds.model.Livro;
 import br.com.alura.musiscas.screensounds.repository.AutorRepository;
 import br.com.alura.musiscas.screensounds.repository.LivroRepository;
-import br.com.alura.musiscas.screensounds.service.Consultas;
-import br.com.alura.musiscas.screensounds.utils.Filter;
-import br.com.alura.musiscas.screensounds.utils.ListenerBox;
-import br.com.alura.musiscas.screensounds.utils.TableSet;
-import br.com.alura.musiscas.screensounds.utils.TransitionMenu;
+import br.com.alura.musiscas.screensounds.service.ConsultasQuery;
+import br.com.alura.musiscas.screensounds.service.PersistEConsulta;
+import br.com.alura.musiscas.screensounds.utils.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,7 +28,7 @@ import java.util.ResourceBundle;
 @Component
 public class Controller implements Initializable {
     @FXML
-    private CheckBox box_lido;
+    private CheckBox box_lido, cb_ranking, cb_editLivro;
     @FXML
     private GridPane grid_addLivro;
     @FXML
@@ -46,13 +44,17 @@ public class Controller implements Initializable {
     @FXML
     private TextField tf_titulo,tf_buscadorAutorLivro, tf_avaliacao,tf_addAutor;
     @FXML
-    private VBox vBox_opMeusLivros,vBox_addAutor,vBox_meusLivros;
+    private VBox vBox_opMeusLivros,vBox_addAutor,vBox_meusLivros, vBox_editLivro;
     @FXML
     private ChoiceBox<String> cb_filtro_busca,cb_categoriaBusca,cb_categoriaAddLivros;
     @FXML
     private TableColumn<ConsultaTabela, String> nome, autor, genero, avaliacao;
     @FXML
     private Button botao_pesquisa;
+    @FXML
+    private TableView<RankingTabela> table_ranking;
+    @FXML
+    private TableColumn<RankingTabela, String> nome_ranking, avaliacao_ranking;
 
     Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/pesquisar.png")));
 
@@ -64,6 +66,7 @@ public class Controller implements Initializable {
     /*--------------------------------------*/
     ObservableList<Autor> autorObservableList;
     ObservableList<ConsultaTabela> tabelaObservable = FXCollections.observableArrayList();
+    ObservableList<RankingTabela> rankingObservable = FXCollections.observableArrayList();
 
     @Override
     public void initialize(java.net.URL location, ResourceBundle resources) {
@@ -78,65 +81,30 @@ public class Controller implements Initializable {
                 cb_categoriaAddLivros.getItems().add(s.getDescricao());
             }
 
-
-
+        /*----------Listeners*-----*/
         ListenerBox.listenerBusca(cb_filtro_busca, tf_buscadorAutorLivro, label_selecionaCategoria, cb_categoriaBusca);
+        ListenerBox.verificaCheckBoxMeusLivros(cb_ranking, cb_editLivro,vBox_editLivro, vBox_meusLivros );
 
         /*----------Tabelas-------*/
         TableSet.tabelaBusca(nome, autor, genero, avaliacao);
         table_busca.getItems().addAll(tabelaObservable);
+        if (rankingObservable.isEmpty()) {
+            TableSet.tabelaRanking(nome_ranking, avaliacao_ranking);
+            ConsultasQuery.buscaPorRanking(livroRepository, rankingObservable);
+            table_ranking.getItems().addAll(rankingObservable);
+        }
+
         /*------------------------*/
         botao_pesquisa.setGraphic(new ImageView(image));
 
 
     }
     public void persist() {
-        Livro livro = new Livro(tf_titulo.getText(),
-                cb_autorAddLivro.getValue(),
-                tf_avaliacao.getText(),
-                cb_categoriaAddLivros.getValue(),
-                box_lido.isSelected());
-
-        livroRepository.save(livro);
+        PersistEConsulta.salvarDados(tf_titulo, tf_avaliacao,cb_autorAddLivro,cb_categoriaAddLivros,box_lido,livroRepository);
     }
     public void consultar() {
-        if (cb_filtro_busca.getValue().contains("Nome")) {
-            System.out.println("Buscou por nome");
-            tabelaObservable.clear();
-            table_busca.getItems().clear();
-            if (tf_buscadorAutorLivro.getText().isEmpty()) {
-                System.out.println("Busca vazia");
-            } else {
-                Consultas.buscaPorTitulo(livroRepository, tf_buscadorAutorLivro.getText(), tabelaObservable);
-                initialize(null,null);
-            }
-        } else if (cb_filtro_busca.getValue().equals("Autor")) {
-            System.out.println("Buscou por autor");
-            tabelaObservable.clear();
-            table_busca.getItems().clear();
-            if(tf_buscadorAutorLivro.getText().isEmpty()) {
-                System.out.println("Busca vazia");
-            } else {
-                Consultas.buscaPorAutor(livroRepository, tf_buscadorAutorLivro.getText(), tabelaObservable);
-                initialize(null,null);
-            }
-        } else if (cb_filtro_busca.getValue().equals("Avaliação")) {
-            tabelaObservable.clear();
-            table_busca.getItems().clear();
-            Consultas.buscarPorAvalicao(livroRepository, tabelaObservable, cb_categoriaBusca, tf_buscadorAutorLivro.getText());
-            initialize(null,null);
-        } else if (cb_filtro_busca.getValue().equals("Gênero")) {
-            tabelaObservable.clear();
-            table_busca.getItems().clear();
-            Consultas.buscaPorGenero(livroRepository, cb_categoriaBusca.getValue(), tabelaObservable);
-            initialize(null,null);
-        } else if (cb_filtro_busca.getValue().equals("Lido")) {
-            tabelaObservable.clear();
-            table_busca.getItems().clear();
-            Consultas.buscaPorLidos(livroRepository, tabelaObservable,cb_categoriaBusca);
-            initialize(null,null);
-        }
-
+        PersistEConsulta.consultas(cb_filtro_busca,tabelaObservable,table_busca,tf_buscadorAutorLivro,livroRepository,cb_categoriaBusca);
+        initialize(null,null);
     }
     public void bt_inicio() {
         TransitionMenu.verificaHome(label_addLivro, grid_addLivro, label_tituloBusca, grid_busca, img_busca, table_busca, label_meusLivros, img_meusLivros, vBox_meusLivros, vBox_opMeusLivros, label_addAutor, img_addAutor, vBox_addAutor, label_textoHome, label_tituloHome, flowPane_home, img_addLivro);
