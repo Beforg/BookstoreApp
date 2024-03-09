@@ -57,3 +57,4 @@ Projeto com intuito de aplicar os conhecimentos na área de Java e Spring Boot.
 - Spring Boot
 - Maven
 - JavaFX
+- PostgreSQL
