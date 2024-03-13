@@ -51,9 +51,6 @@ public class ListenerBox {
                 choiceBoxCategoria.setVisible(true);
                 choiceBoxCategoria.getItems().clear();
 
-//                for (Categorias s : Categorias.values()) {
-//                    choiceBoxCategoria.getItems().add(s.getDescricao());
-//                }
                 Filter.filtrosCategorias(choiceBoxCategoria);
 
             } else {
@@ -131,7 +128,7 @@ public class ListenerBox {
                 autorChoiceBox.setValue(livroRepository.findByTitulo(newValue).getAutor());
                 genero.setValue(livroRepository.findByTitulo(newValue).getGenero());
                 lido.setSelected(livroRepository.findByTitulo(newValue).isLido());
-                avaliacao.setText(livroRepository.findByTitulo(newValue).getAvaliacao());
+                avaliacao.setText(String.valueOf(livroRepository.findByTitulo(newValue).getAvaliacao()));
 
             } else {
                 titulo.setDisable(true);

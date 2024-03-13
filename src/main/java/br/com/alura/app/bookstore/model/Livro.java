@@ -9,7 +9,8 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
-    private String avaliacao;
+    @Column
+    private double avaliacao;
     private String genero;
     private boolean lido;
     @ManyToOne
@@ -18,7 +19,7 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String titulo, Autor autor, String avaliacao, String genero, boolean lido) {
+    public Livro(String titulo, Autor autor, double avaliacao, String genero, boolean lido) {
         this.titulo = titulo;
         this.autor = autor;
         this.avaliacao = avaliacao;
@@ -74,11 +75,11 @@ public class Livro {
         this.autor = autor;
     }
 
-    public String getAvaliacao() {
+    public double getAvaliacao() {
         return avaliacao;
     }
 
-    public void setAvaliacao(String avaliacao) {
+    public void setAvaliacao(double avaliacao) {
         this.avaliacao = avaliacao;
     }
 

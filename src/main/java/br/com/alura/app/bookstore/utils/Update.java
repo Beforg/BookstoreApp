@@ -15,13 +15,11 @@ public class Update {
         });
     }
     public static void updateRanking(TableView<RankingTabela> table_ranking, ObservableList<RankingTabela> rankingObservable, LivroRepository livroRepository) {
-            RankingTabela rankingTabela = new RankingTabela("","");
             table_ranking.getItems().clear();
             rankingObservable.clear();
             ConsultasQuery.buscaPorRanking(livroRepository, rankingObservable);
             table_ranking.getItems().addAll(rankingObservable);
-            table_ranking.getItems().add(rankingTabela);
-            table_ranking.getItems().remove(rankingTabela);
+
 
 
     }

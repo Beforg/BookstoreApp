@@ -26,27 +26,29 @@ public class PersistEConsulta {
             InfoScreenController infoScreenController = new InfoScreenController();
             infoScreenController.showInformationMessage("Preencha todos os campos", "Erro", 2,false);
         } else {
-            Livro livro = new Livro(tf_titulo.getText(),
-                    cb_autorAddLivro.getValue(),
-                    tf_avaliacao.getText().replace("","N/A"),
-                    cb_categoriaAddLivros.getValue(),
-                    box_lido.isSelected());
-            tf_titulo.setText("");
-            tf_avaliacao.setText("");
-            cb_autorAddLivro.setValue(null);
-            cb_categoriaAddLivros.setValue(null);
-            box_lido.setSelected(false);
+            livro(tf_titulo, tf_avaliacao, cb_autorAddLivro, cb_categoriaAddLivros, box_lido, livroRepository);
 
-            try {
-                livroRepository.save(livro);
-                InfoScreenController infoScreenController = new InfoScreenController();
-                infoScreenController.showInformationMessage("Seu livro foi adicionado com sucesso.", "Livro adicionado", 1,false);
-
-            } catch (Exception e) {
-                InfoScreenController infoScreenController = new InfoScreenController();
-                infoScreenController.showInformationMessage("Erro ao adicionar livro", "Erro", 2,false);
-                throw new RuntimeException(e);
-            }
+//            Livro livro = new Livro(tf_titulo.getText(),
+//                    cb_autorAddLivro.getValue(),
+//                    tf_avaliacao.getText().replace("","N/A"),
+//                    cb_categoriaAddLivros.getValue(),
+//                    box_lido.isSelected());
+//            tf_titulo.setText("");
+//            tf_avaliacao.setText("");
+//            cb_autorAddLivro.setValue(null);
+//            cb_categoriaAddLivros.setValue(null);
+//            box_lido.setSelected(false);
+//
+//            try {
+//                livroRepository.save(livro);
+//                InfoScreenController infoScreenController = new InfoScreenController();
+//                infoScreenController.showInformationMessage("Seu livro foi adicionado com sucesso.", "Livro adicionado", 1,false);
+//
+//            } catch (Exception e) {
+//                InfoScreenController infoScreenController = new InfoScreenController();
+//                infoScreenController.showInformationMessage("Erro ao adicionar livro", "Erro", 2,false);
+//                throw new RuntimeException(e);
+//            }
         }
 
 
@@ -112,7 +114,7 @@ public class PersistEConsulta {
             livro.setAutor(cb_autorEdit.getValue());
             livro.setGenero(cb_editGenero.getValue());
             livro.setLido(lido.isSelected());
-            livro.setAvaliacao(tf_avaliacaoEdit.getText());
+            livro.setAvaliacao(Double.parseDouble(tf_avaliacaoEdit.getText().replace(",", ".")));
             try {
                 livroRepository.save(livro);
                 InfoScreenController infoScreenController = new InfoScreenController();
@@ -202,6 +204,44 @@ public class PersistEConsulta {
                 throw new RuntimeException(e);
             }
         }
+
+    }
+
+    public static void livro(TextField tf_titulo,
+                             TextField tf_avaliacao,
+                             ChoiceBox<Autor> cb_autorAddLivro,
+                             ChoiceBox<String> cb_categoriaAddLivros,
+                             CheckBox box_lido,
+                             LivroRepository livroRepository) {
+        double avaliacao;
+        if (tf_avaliacao.getText().isEmpty()) {
+            avaliacao = 0;
+
+        } else {
+            avaliacao = Double.parseDouble(tf_avaliacao.getText().replace(",", "."));
+        }
+            Livro livro = new Livro(tf_titulo.getText(),
+                    cb_autorAddLivro.getValue(),
+                    avaliacao,
+                    cb_categoriaAddLivros.getValue(),
+                    box_lido.isSelected());
+            tf_titulo.setText("");
+            tf_avaliacao.setText("");
+            cb_autorAddLivro.setValue(null);
+            cb_categoriaAddLivros.setValue(null);
+            box_lido.setSelected(false);
+
+            try {
+                livroRepository.save(livro);
+                InfoScreenController infoScreenController = new InfoScreenController();
+                infoScreenController.showInformationMessage("Seu livro foi adicionado com sucesso.", "Livro adicionado", 1,false);
+
+            } catch (Exception e) {
+                InfoScreenController infoScreenController = new InfoScreenController();
+                infoScreenController.showInformationMessage("Erro ao adicionar livro", "Erro", 2,false);
+                throw new RuntimeException(e);
+            }
+
 
     }
 }

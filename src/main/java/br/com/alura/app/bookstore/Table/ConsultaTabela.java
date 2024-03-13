@@ -4,9 +4,9 @@ public class ConsultaTabela {
     private final String nome;
     private final String autor;
     private final String genero;
-    private final String avaliacao;
+    private final double avaliacao;
 
-    public ConsultaTabela(String nome, String autor, String genero, String avaliacao) {
+    public ConsultaTabela(String nome, String autor, String genero, double avaliacao) {
         this.nome = nome;
         this.autor = autor;
         this.genero = genero;
@@ -25,7 +25,7 @@ public class ConsultaTabela {
         return genero;
     }
 
-    public String getAvaliacao() {
+    public double getAvaliacao() {
         return avaliacao;
     }
 

@@ -24,7 +24,7 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     List<Livro> buscaLidosFalse();
     @Query("SELECT l FROM Livro l WHERE l.genero = :genero")
     List<Livro> buscaPorGenero(String genero);
-    @Query("SELECT l FROM Livro l ORDER BY l.avaliacao ASC LIMIT 10")
+    @Query("SELECT l FROM Livro l ORDER BY l.avaliacao DESC LIMIT 10")
     List<Livro> buscaPorRanking();
     Livro findByTitulo(String newValue);
     @Modifying

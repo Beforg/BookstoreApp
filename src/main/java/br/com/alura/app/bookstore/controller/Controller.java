@@ -58,7 +58,6 @@ public class Controller implements Initializable {
     private TableColumn<RankingTabela, String> nome_ranking, avaliacao_ranking;
 
     Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/pesquisar.png")));
-    /*Consultas ao banco de dados*/
     @Autowired
     private LivroRepository livroRepository;
     @Autowired
