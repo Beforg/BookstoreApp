@@ -31,4 +31,6 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     @Transactional
     @Query("DELETE FROM Livro l WHERE l.titulo = :titulo")
     void deleteByTitulo(String titulo);
+
+    int countByLidoTrue();
 }

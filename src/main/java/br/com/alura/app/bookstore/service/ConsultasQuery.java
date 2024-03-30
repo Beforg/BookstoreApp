@@ -3,9 +3,11 @@ package br.com.alura.app.bookstore.service;
 import br.com.alura.app.bookstore.Table.ConsultaTabela;
 import br.com.alura.app.bookstore.Table.RankingTabela;
 import br.com.alura.app.bookstore.model.Livro;
+import br.com.alura.app.bookstore.repository.AutorRepository;
 import br.com.alura.app.bookstore.repository.LivroRepository;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 import java.util.List;
 
@@ -56,6 +58,12 @@ public class ConsultasQuery {
                 livros.add(new ConsultaTabela(livro.getTitulo(), livro.getAutor().toString(), livro.getGenero(), livro.getAvaliacao()));
             }
         }
+    }
+    public static void contador(LivroRepository livroRepository, AutorRepository autorRepository, Label numeroLivros, Label numeroLivrosLidos, Label numeroAutores) {
+        numeroLivros.setText(String.valueOf(livroRepository.count()));
+        numeroLivrosLidos.setText(String.valueOf(livroRepository.countByLidoTrue()));
+        numeroAutores.setText(String.valueOf(autorRepository.count()));
+
     }
 
 }

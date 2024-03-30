@@ -5,6 +5,7 @@ import br.com.alura.app.bookstore.model.Autor;
 import br.com.alura.app.bookstore.model.Categorias;
 import br.com.alura.app.bookstore.repository.AutorRepository;
 import br.com.alura.app.bookstore.repository.LivroRepository;
+import br.com.alura.app.bookstore.service.ConsultasQuery;
 import br.com.alura.app.bookstore.service.PersistEConsulta;
 import br.com.alura.app.bookstore.utils.*;
 import javafx.collections.FXCollections;
@@ -31,13 +32,13 @@ public class Controller implements Initializable {
     @FXML
     private CheckBox box_lido, cb_ranking, cb_editLivro,lidoEdit,sobre_livro;
     @FXML
-    private GridPane grid_addLivro;
+    private GridPane grid_addLivro,label_textoHome;
     @FXML
     private FlowPane grid_busca,flowPane_home;
     @FXML
     private ImageView img_busca,img_meusLivros,img_addLivro,img_addAutor;
     @FXML
-    private Label label_meusLivros, label_addLivro,label_textoHome,label_tituloBusca,label_tituloHome,label_selecionaCategoria,label_addAutor;
+    private Label label_meusLivros, label_addLivro,label_tituloBusca,label_tituloHome,label_selecionaCategoria,label_addAutor, labelLivrosNum, labelLivrosNumLido,labelAutoresNum;
     @FXML
     private ChoiceBox<Autor> cb_autorAddLivro,cb_autorEdit;
     @FXML
@@ -101,7 +102,7 @@ public class Controller implements Initializable {
 
         /*-----------Icone Pesquisa-------------*/
         botao_pesquisa.setGraphic(new ImageView(image));
-
+        ConsultasQuery.contador(livroRepository, autorRepository, labelLivrosNum, labelLivrosNumLido, labelAutoresNum);
 
     }
     public void persist() {
@@ -146,18 +147,24 @@ public class Controller implements Initializable {
     }
 
     public void excluir() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Excluir Livro");
-        alert.setHeaderText("Você tem certeza que deseja excluir o livro?");
-        alert.setContentText("Esta ação não poderá ser desfeita");
-        alert.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/information.png")))));
-        alert.showAndWait();
-        alert.getClass().getResource("/style/info_screen.css");
-        if (alert.getResult().getButtonData().isDefaultButton()) {
-            PersistEConsulta persistEConsulta = new PersistEConsulta();
-            persistEConsulta.excluirLivro(cb_selecionaMeuLivro, tf_tituloEdit, cb_autorEdit, cb_generoEdit, lidoEdit, tf_editAvaliacao, livroRepository);
-            initialize(null, null);
+        if (cb_selecionaMeuLivro.getValue() == null) {
+            InfoScreenController infoScreenController = new InfoScreenController();
+            infoScreenController.showInformationMessage("Selecione um livro para excluir", "Erro", 2, false);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Excluir Livro");
+            alert.setHeaderText("Você tem certeza que deseja excluir o livro?");
+            alert.setContentText("Esta ação não poderá ser desfeita");
+            alert.setGraphic(new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/information.png")))));
+            alert.showAndWait();
+            alert.getClass().getResource("/style/info_screen.css");
+            if (alert.getResult().getButtonData().isDefaultButton()) {
+                PersistEConsulta persistEConsulta = new PersistEConsulta();
+                persistEConsulta.excluirLivro(cb_selecionaMeuLivro, tf_tituloEdit, cb_autorEdit, cb_generoEdit, lidoEdit, tf_editAvaliacao, livroRepository);
+                initialize(null, null);
+            }
         }
+
     }
     public void sobre() {
         Sobre.sobre();

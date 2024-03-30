@@ -18,7 +18,6 @@ public class Sobre {
                 "Aplicativo para controle de livros | v1.0 \n"+ "github.com/Beforg");
         alert.setGraphic(new ImageView(new Image(Objects.requireNonNull(Sobre.class.getResourceAsStream("/img/information.png")))));
 
-        alert.showAndWait();
         ButtonType okButtonType = alert.getButtonTypes().stream()
                 .filter(buttonType -> buttonType.getButtonData() == ButtonBar.ButtonData.OK_DONE)
                 .findFirst()

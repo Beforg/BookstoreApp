@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 
 public class TransitionMenu {
     /*Visibilidade dos elementos do Inicio*/
-    public static void transitionHome(Label label_textoHome, Label label_tituloHome, FlowPane flowPane_home, boolean b) {
+    public static void transitionHome(GridPane label_textoHome, Label label_tituloHome, FlowPane flowPane_home, boolean b) {
         label_textoHome.setVisible(b);
         label_tituloHome.setVisible(b);
         flowPane_home.setVisible(b);
@@ -58,7 +58,7 @@ public class TransitionMenu {
                                     Label label_addAutor,
                                     ImageView img_addAutor,
                                     VBox vBox_addAutor,
-                                    Label label_textoHome,
+                                    GridPane label_textoHome,
                                     Label label_tituloHome,
                                     FlowPane flowPane_home,
                                     ImageView img_addLivro,
@@ -82,7 +82,7 @@ public class TransitionMenu {
         }
     }
     /*Verificação da aba aberta para Adicionar Livros*/
-    public static void verificaAddLivro(Label label_textoHome,
+    public static void verificaAddLivro(GridPane label_textoHome,
                                         Label label_tituloHome,
                                         FlowPane flowPane_home,
                                         Label label_addLivro,
@@ -116,7 +116,7 @@ public class TransitionMenu {
         }
     }
     /*Verificação da aba aberta para Buscar livros*/
-    public static void verificaBuscaLivro(Label label_textoHome,
+    public static void verificaBuscaLivro(GridPane label_textoHome,
                                           Label label_tituloHome,
                                           FlowPane flowPane_home,
                                           Label label_addLivro,
@@ -150,7 +150,7 @@ public class TransitionMenu {
         }
     }
     /*Verificação da aba aberta para Meus livros*/
-    public static void verificaMeusLivros(Label label_textoHome,
+    public static void verificaMeusLivros(GridPane label_textoHome,
                                           Label label_tituloHome,
                                           FlowPane flowPane_home,
                                           Label label_addLivro,
@@ -184,7 +184,7 @@ public class TransitionMenu {
         }
     }
     /*Verificação da aba aberta para Autores*/
-    public static void verificaAddAutor(Label label_textoHome,
+    public static void verificaAddAutor(GridPane label_textoHome,
                                         Label label_tituloHome,
                                         FlowPane flowPane_home,
                                         Label label_addLivro,

@@ -21,42 +21,92 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.alura.app.bookstore.controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="700.0" styleClass="anchorPane" stylesheets="@../styles/background.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.alura.app.bookstore.controller.Controller">
    <children>
-      <Pane prefHeight="400.0" prefWidth="174.0" styleClass="pane" stylesheets="@../styles/styles.css">
+      <Pane prefHeight="530.0" prefWidth="700.0" styleClass="fundoImg" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox alignment="CENTER" layoutX="15.0" layoutY="144.0" prefHeight="187.0" prefWidth="148.0" spacing="10.0">
+            <Pane prefHeight="530.0" prefWidth="235.0" styleClass="pane" stylesheets="@../styles/styles.css">
                <children>
-                  <Button mnemonicParsing="false" onAction="#bt_inicio" styleClass="botao_padrao" text="Início" />
-                  <Button mnemonicParsing="false" onAction="#bt_addLivro" styleClass="botao_padrao" stylesheets="@../styles/styles.css" text="Adicionar Livro" />
-                  <Button mnemonicParsing="false" onAction="#bt_buscaLivro" styleClass="botao_padrao" text="Buscar Livro" />
-                  <Button mnemonicParsing="false" onAction="#bt_meusLivros" styleClass="botao_padrao" text="Meus Livros" />
-                  <Button mnemonicParsing="false" onAction="#novoAutor" styleClass="botao_padrao" text="Novo Autor" />
-                  <Button mnemonicParsing="false" onAction="#sair" styleClass="botao_padrao" text="Sair" />
+                  <GridPane layoutX="15.0" layoutY="99.0" prefHeight="444.0" prefWidth="205.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.0" minWidth="10.0" prefWidth="94.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="166.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox prefHeight="342.0" prefWidth="100.0" spacing="23.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-home-screen-100.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-add-100.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-search-100.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-book-100.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-author-100.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="60.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/menu/icons8-exit-100.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <GridPane.margin>
+                              <Insets top="45.0" />
+                           </GridPane.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="435.0" prefWidth="139.0" spacing="33.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#bt_inicio" styleClass="botao_padrao" text="Início" />
+                              <Button mnemonicParsing="false" onAction="#bt_addLivro" styleClass="botao_padrao" stylesheets="@../styles/styles.css" text="Adicionar Livro" />
+                              <Button mnemonicParsing="false" onAction="#bt_buscaLivro" styleClass="botao_padrao" text="Buscar Livro" />
+                              <Button mnemonicParsing="false" onAction="#bt_meusLivros" styleClass="botao_padrao" text="Meus Livros" />
+                              <Button mnemonicParsing="false" onAction="#novoAutor" styleClass="botao_padrao" text="Novo Autor" />
+                              <Button mnemonicParsing="false" onAction="#sair" styleClass="botao_padrao" text="Sair" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <MenuBar layoutX="-3.0" layoutY="-3.0" prefHeight="40.0" prefWidth="242.0" styleClass="menuBar">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Menu">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#sobre" text="Sobre" />
+                        </items>
+                      </Menu>
+                    </menus>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </padding>
+                  </MenuBar>
+                  <ImageView fitHeight="150.0" fitWidth="107.0" layoutX="58.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/icons8-books-150.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </VBox>
-            <ImageView fitHeight="97.0" fitWidth="97.0" layoutX="40.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/book-stack.png" />
-               </image>
-            </ImageView>
-            <MenuBar layoutX="-1.0" layoutY="-3.0" prefHeight="25.0" prefWidth="175.0" styleClass="menuBar">
-              <menus>
-                <Menu mnemonicParsing="false" text="Menu">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#sobre" text="Sobre" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </children>
-      </Pane>
-      <Pane layoutX="168.0" prefHeight="406.0" prefWidth="438.0" styleClass="fundo" stylesheets="@../styles/styles.css" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <GridPane fx:id="grid_addLivro" alignment="CENTER" layoutX="45.0" layoutY="88.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="281.0" prefWidth="337.0" visible="false">
+            </Pane>
+            <GridPane fx:id="grid_addLivro" alignment="CENTER" layoutX="250.0" layoutY="106.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="399.0" prefWidth="430.0" styleClass="flowPaneHome" visible="false">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,22 +120,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="label_padrao" text="Título">
+                  <Label styleClass="labelTexto" text="Título">
                      <padding>
                         <Insets left="40.0" />
                      </padding>
                   </Label>
-                  <Label layoutX="10.0" layoutY="24.0" styleClass="label_padrao" text="Autor" GridPane.rowIndex="1">
+                  <Label layoutX="10.0" layoutY="24.0" styleClass="labelTexto" text="Autor" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="40.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="10.0" layoutY="69.0" prefHeight="17.0" prefWidth="107.0" styleClass="label_padrao" text="Gênero" GridPane.rowIndex="2">
+                  <Label layoutX="10.0" layoutY="69.0" prefHeight="17.0" prefWidth="107.0" styleClass="labelTexto" text="Gênero" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="40.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="10.0" layoutY="114.0" prefHeight="17.0" prefWidth="89.0" styleClass="label_padrao" text="Avaliação" GridPane.rowIndex="3">
+                  <Label layoutX="10.0" layoutY="114.0" prefHeight="17.0" prefWidth="89.0" styleClass="labelTexto" text="Avaliação" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="40.0" />
                      </GridPane.margin>
@@ -117,15 +167,9 @@
                   </Label>
                </children>
             </GridPane>
-            <Label fx:id="label_addLivro" layoutX="98.0" layoutY="24.0" styleClass="label_titulo" text="Adicionar novo Livro" visible="false" />
-            <Label fx:id="label_tituloHome" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="9.0" prefHeight="69.0" prefWidth="430.0" styleClass="label_titulo" text="Olá, este é o BookstoreApp" wrapText="true" />
-            <Line fx:id="line_addLivro1" endX="327.0" layoutX="105.0" layoutY="80.0" startX="-105.0" stroke="#6083db" strokeWidth="6.0" />
-            <Label fx:id="label_textoHome" layoutX="37.0" layoutY="90.0" prefHeight="171.0" prefWidth="365.0" styleClass="label_padrao" text="Adicione seus livros favoritos e crie seu ranking com seus livros mais bem avaliados! monte a sua coleção, busque por Livros,Categorias ou Autores, Procure detalhes sobre seus livros e autores preferidos!" wrapText="true">
-               <font>
-                  <Font name="Gabriola" size="23.0" />
-               </font>
-            </Label>
-            <FlowPane fx:id="flowPane_home" alignment="CENTER" columnHalignment="CENTER" hgap="6.0" layoutX="16.0" layoutY="265.0" rowValignment="BASELINE" vgap="5.0">
+            <Label fx:id="label_addLivro" layoutX="334.0" layoutY="27.0" styleClass="label_titulo" text="Adicionar novo Livro" visible="false" />
+            <Label fx:id="label_tituloHome" alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="19.0" prefHeight="69.0" prefWidth="205.0" styleClass="label_titulo" text="Bem-Vindo" wrapText="true" />
+            <FlowPane fx:id="flowPane_home" alignment="CENTER" columnHalignment="CENTER" hgap="45.0" layoutX="252.0" layoutY="96.0" rowValignment="BASELINE" styleClass="flowPaneHome" vgap="5.0">
                <children>
                   <ImageView fitHeight="95.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -144,13 +188,13 @@
                   </ImageView>
                </children>
             </FlowPane>
-            <Label fx:id="label_tituloBusca" layoutX="98.0" layoutY="23.0" styleClass="label_titulo" text="Buscar livros" visible="false" />
-            <ImageView fx:id="img_busca" fitHeight="62.0" fitWidth="61.0" layoutX="28.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <Label fx:id="label_tituloBusca" layoutX="326.0" layoutY="26.0" styleClass="label_titulo" text="Buscar livros" visible="false" />
+            <ImageView fx:id="img_busca" fitHeight="62.0" fitWidth="61.0" layoutX="250.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../img/pesquisa.png" />
                </image>
             </ImageView>
-            <TableView fx:id="table_busca" layoutX="11.0" layoutY="189.0" prefHeight="200.0" prefWidth="416.0" visible="false">
+            <TableView fx:id="table_busca" layoutX="242.0" layoutY="203.0" prefHeight="313.0" prefWidth="446.0" visible="false">
               <columns>
                 <TableColumn fx:id="nome" editable="false" prefWidth="166.0" text="Nome" />
                 <TableColumn fx:id="autor" editable="false" minWidth="0.0" prefWidth="105.0" text="Autor" />
@@ -161,29 +205,35 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <FlowPane fx:id="grid_busca" hgap="20.0" layoutX="20.0" layoutY="90.0" prefHeight="89.0" prefWidth="416.0" vgap="10.0" visible="false">
+            <FlowPane fx:id="grid_busca" hgap="20.0" layoutX="242.0" layoutY="85.0" prefHeight="110.0" prefWidth="458.0" vgap="10.0" visible="false">
                <children>
                   <Label styleClass="label_padrao" text="Filtro" />
                   <ChoiceBox fx:id="cb_filtro_busca" prefHeight="25.0" prefWidth="123.0" />
                   <TextField fx:id="tf_buscadorAutorLivro" alignment="CENTER" disable="true" prefHeight="32.0" prefWidth="151.0" promptText="Selecione o filtro." />
                   <Label fx:id="label_selecionaCategoria" prefHeight="23.0" prefWidth="183.0" styleClass="label_padrao" text="Selecione a categoria:" visible="false" />
                   <ChoiceBox fx:id="cb_categoriaBusca" prefHeight="32.0" prefWidth="122.0" visible="false" />
-                  <Button fx:id="botao_pesquisa" mnemonicParsing="false" onAction="#consultar" prefHeight="32.0" prefWidth="70.0" styleClass="bt-busca" />
+                  <Button fx:id="botao_pesquisa" mnemonicParsing="false" onAction="#consultar" prefHeight="32.0" prefWidth="70.0" styleClass="bt-busca">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Button>
                </children>
                <padding>
                   <Insets top="10.0" />
                </padding>
             </FlowPane>
-            <Label fx:id="label_meusLivros" layoutX="123.0" layoutY="26.0" styleClass="label_titulo" text="Meus Livros" visible="false" />
-            <ImageView fx:id="img_meusLivros" fitHeight="76.0" fitWidth="79.0" layoutX="21.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <Label fx:id="label_meusLivros" layoutX="330.0" layoutY="36.0" styleClass="label_titulo" text="Meus Livros" visible="false" />
+            <ImageView fx:id="img_meusLivros" fitHeight="69.0" fitWidth="66.0" layoutX="248.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../img/meus_livros.png" />
                </image>
             </ImageView>
-            <VBox fx:id="vBox_meusLivros" alignment="TOP_CENTER" layoutX="161.0" layoutY="96.0" prefHeight="288.0" prefWidth="250.0" styleClass="vBox" visible="false">
+            <VBox fx:id="vBox_meusLivros" alignment="TOP_CENTER" layoutX="389.0" layoutY="154.0" prefHeight="360.0" prefWidth="300.0" visible="false">
                <children>
                   <Label styleClass="label_padrao" text="Meu Ranking:" />
-                  <TableView fx:id="table_ranking" prefHeight="243.0" prefWidth="235.0">
+                  <TableView fx:id="table_ranking" prefHeight="328.0" prefWidth="258.0">
                     <columns>
                       <TableColumn fx:id="nome_ranking" editable="false" prefWidth="142.0" text="Nome" />
                       <TableColumn fx:id="avaliacao_ranking" editable="false" prefWidth="88.00003051757812" text="Avaliação" />
@@ -194,7 +244,7 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox fx:id="vBox_opMeusLivros" alignment="TOP_CENTER" layoutX="25.0" layoutY="85.0" prefHeight="243.0" prefWidth="123.0" spacing="10.0" visible="false">
+            <VBox fx:id="vBox_opMeusLivros" alignment="TOP_CENTER" layoutX="250.0" layoutY="155.0" prefHeight="360.0" prefWidth="123.0" spacing="20.0" visible="false">
                <children>
                   <ImageView fx:id="img_opMeusLivros" fitHeight="101.0" fitWidth="128.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -206,60 +256,63 @@
                   </ImageView>
                   <CheckBox fx:id="cb_ranking" mnemonicParsing="false" styleClass="check-box-livros" text="Ranking" />
                   <CheckBox fx:id="cb_editLivro" mnemonicParsing="false" prefHeight="32.0" prefWidth="108.0" styleClass="check-box-livros" text="Editar Livro" />
-                  <CheckBox fx:id="sobre_livro" mnemonicParsing="false" styleClass="check-box-livros" text="Sobre" />
+                  <CheckBox fx:id="sobre_livro" disable="true" mnemonicParsing="false" styleClass="check-box-livros" text="Sobre" />
                   <Button fx:id="bt_editSalvar" mnemonicParsing="false" onAction="#editarLivro" prefHeight="32.0" prefWidth="76.0" styleClass="botao_padrao" text="Salvar " visible="false" />
                   <Button fx:id="botao_excluir" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#excluir" prefHeight="23.0" prefWidth="123.0" styleClass="botao_padrao-excluir" text="Excluir" visible="false" />
                </children>
             </VBox>
-            <VBox fx:id="vBox_editMeusLivros" alignment="TOP_CENTER" fillWidth="false" layoutX="186.0" layoutY="106.0" prefHeight="281.0" prefWidth="235.0" styleClass="vBox" visible="false">
+            <VBox fx:id="vBox_editMeusLivros" alignment="TOP_CENTER" fillWidth="false" layoutX="389.0" layoutY="154.0" prefHeight="360.0" prefWidth="300.0" spacing="7.0" styleClass="flowPaneHome" visible="false">
                <children>
-                  <Label styleClass="label_padrao" text="Editar Livro:" />
+                  <Label styleClass="labelTexto" text="Selecione o livro:" />
                   <ChoiceBox prefWidth="150.0" />
-                  <Label styleClass="label_padrao" text="Título" />
+                  <Label styleClass="labelTexto" text="Título" />
                   <TextField disable="true" prefHeight="32.0" prefWidth="173.0" />
-                  <Label layoutX="113.0" layoutY="70.0" styleClass="label_padrao" text="Autor" />
+                  <Label layoutX="113.0" layoutY="70.0" styleClass="labelTexto" text="Autor" />
                   <TextField disable="true" />
-                  <Label styleClass="label_padrao" text="Gênero" />
+                  <Label styleClass="labelTexto" text="Gênero" />
                   <ChoiceBox disable="true" prefWidth="150.0" />
-                  <Label styleClass="label_padrao" text="Avaliação" />
+                  <Label styleClass="labelTexto" text="Avaliação" />
                </children>
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
             </VBox>
-            <ImageView fx:id="img_addLivro" fitHeight="61.0" fitWidth="61.0" layoutX="25.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="img_addLivro" fitHeight="61.0" fitWidth="61.0" layoutX="250.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../img/livro.png" />
                </image>
             </ImageView>
-            <Label fx:id="label_addAutor" alignment="CENTER" contentDisplay="CENTER" layoutX="-33.0" layoutY="9.0" prefHeight="69.0" prefWidth="430.0" styleClass="label_titulo" text="Adicionar Autor" visible="false" wrapText="true" />
-            <VBox fx:id="vBox_addAutor" alignment="TOP_CENTER" fillWidth="false" layoutX="22.0" layoutY="106.0" prefHeight="281.0" prefWidth="390.0" spacing="15.0" styleClass="vBox" visible="false">
+            <Label fx:id="label_addAutor" alignment="CENTER" contentDisplay="CENTER" layoutX="323.0" layoutY="19.0" prefHeight="69.0" prefWidth="225.0" styleClass="label_titulo" text="Adicionar Autor" visible="false" wrapText="true" />
+            <VBox fx:id="vBox_addAutor" alignment="TOP_CENTER" fillWidth="false" layoutX="256.0" layoutY="155.0" prefHeight="350.0" prefWidth="422.0" spacing="25.0" styleClass="flowPaneHome" visible="false">
                <children>
-                  <Label styleClass="label_padrao" text="Novo autor" />
+                  <Label styleClass="labelTexto" text="Novo autor" />
                   <TextField fx:id="tf_addAutor" promptText="Digite o nome do autor" />
                   <Button mnemonicParsing="false" onAction="#addAutor" styleClass="botao_padrao" text="Adicionar" />
-                  <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="122.0" prefWidth="352.0" styleClass="label_padrao" text="Adicione novos autores para conseguir vincular novos livros a eles." wrapText="true" />
-                  <ImageView fitHeight="79.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                  <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="122.0" prefWidth="352.0" styleClass="labelTexto" text="Adicione novos autores para conseguir vincular novos livros a eles." wrapText="true" />
+                  <ImageView fitHeight="71.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/livro_edit.png" />
                      </image>
                   </ImageView>
                </children>
             </VBox>
-            <ImageView fx:id="img_addAutor" fitHeight="69.0" fitWidth="61.0" layoutX="25.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="img_addAutor" fitHeight="69.0" fitWidth="61.0" layoutX="250.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../img/autor.png" />
                </image>
             </ImageView>
-            <VBox fx:id="vBox_editLivro" alignment="TOP_CENTER" fillWidth="false" layoutX="169.0" layoutY="83.0" prefHeight="288.0" prefWidth="250.0" spacing="1.0" styleClass="vBox" visible="false">
+            <VBox fx:id="vBox_editLivro" alignment="TOP_CENTER" fillWidth="false" layoutX="389.0" layoutY="135.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="360.0" prefWidth="300.0" spacing="7.0" styleClass="flowPaneHome" visible="false">
                <children>
-                  <Label styleClass="label_padrao" text="Editar Livro" />
+                  <Label styleClass="labelTexto" text="Editar Livro" />
                   <ChoiceBox fx:id="cb_selecionaMeuLivro" prefWidth="150.0" />
-                  <Label styleClass="label_padrao" text="Título" />
+                  <Label styleClass="labelTexto" text="Título" />
                   <TextField fx:id="tf_tituloEdit" disable="true" />
-                  <Label styleClass="label_padrao" text="Autor" />
+                  <Label styleClass="labelTexto" text="Autor" />
                   <ChoiceBox fx:id="cb_autorEdit" disable="true" prefWidth="150.0" />
-                  <Label styleClass="label_padrao" text="Gênero" />
+                  <Label styleClass="labelTexto" text="Gênero" />
                   <ChoiceBox fx:id="cb_generoEdit" disable="true" prefWidth="150.0" />
                   <CheckBox fx:id="lidoEdit" disable="true" mnemonicParsing="false" text="Lido" />
-                  <Label styleClass="label_padrao" text="Avaliação" />
+                  <Label styleClass="labelTexto" text="Avaliação" />
                   <TextField fx:id="tf_editAvaliacao" disable="true" styleClass="text-field-avaliacao" />
                </children>
             </VBox>
@@ -271,6 +324,37 @@
                   <TextArea prefHeight="200.0" prefWidth="200.0" visible="false" />
                </children>
             </VBox>
+            <GridPane fx:id="label_textoHome" layoutX="259.0" layoutY="244.0" prefHeight="149.0" prefWidth="422.0" styleClass="flowPaneHome">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="198.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="97.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label styleClass="labelTexto" text="Livro(s) cadastrado(s):" />
+                  <Label styleClass="labelTexto" text="Livro(s) lido(s):" GridPane.rowIndex="1" />
+                  <Label styleClass="labelTexto" text="Autor(es) cadastrado(s):" GridPane.rowIndex="2" />
+                  <Label fx:id="labelLivrosNum" text="Numero" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelLivrosNumLido" text="Numero" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelAutoresNum" text="Numero" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
          </children>
       </Pane>
    </children>

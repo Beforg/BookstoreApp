@@ -7,10 +7,7 @@ import br.com.alura.app.bookstore.model.Livro;
 import br.com.alura.app.bookstore.repository.AutorRepository;
 import br.com.alura.app.bookstore.repository.LivroRepository;
 import javafx.collections.ObservableList;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -27,28 +24,6 @@ public class PersistEConsulta {
             infoScreenController.showInformationMessage("Preencha todos os campos", "Erro", 2,false);
         } else {
             livro(tf_titulo, tf_avaliacao, cb_autorAddLivro, cb_categoriaAddLivros, box_lido, livroRepository);
-
-//            Livro livro = new Livro(tf_titulo.getText(),
-//                    cb_autorAddLivro.getValue(),
-//                    tf_avaliacao.getText().replace("","N/A"),
-//                    cb_categoriaAddLivros.getValue(),
-//                    box_lido.isSelected());
-//            tf_titulo.setText("");
-//            tf_avaliacao.setText("");
-//            cb_autorAddLivro.setValue(null);
-//            cb_categoriaAddLivros.setValue(null);
-//            box_lido.setSelected(false);
-//
-//            try {
-//                livroRepository.save(livro);
-//                InfoScreenController infoScreenController = new InfoScreenController();
-//                infoScreenController.showInformationMessage("Seu livro foi adicionado com sucesso.", "Livro adicionado", 1,false);
-//
-//            } catch (Exception e) {
-//                InfoScreenController infoScreenController = new InfoScreenController();
-//                infoScreenController.showInformationMessage("Erro ao adicionar livro", "Erro", 2,false);
-//                throw new RuntimeException(e);
-//            }
         }
 
 
@@ -220,6 +195,12 @@ public class PersistEConsulta {
         } else {
             avaliacao = Double.parseDouble(tf_avaliacao.getText().replace(",", "."));
         }
+
+        // verificar se o Livro já existe e se está vinculado a um autor
+        if (livroRepository.findByTitulo(tf_titulo.getText()) != null && livroRepository.findByTitulo(tf_titulo.getText()).getAutor() != null) {
+            InfoScreenController infoScreenController = new InfoScreenController();
+            infoScreenController.showInformationMessage("Livro já cadastrado", "Erro", 2,false);
+        } else {
             Livro livro = new Livro(tf_titulo.getText(),
                     cb_autorAddLivro.getValue(),
                     avaliacao,
@@ -241,7 +222,7 @@ public class PersistEConsulta {
                 infoScreenController.showInformationMessage("Erro ao adicionar livro", "Erro", 2,false);
                 throw new RuntimeException(e);
             }
-
+        }
 
     }
 }
